@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{music.musicName}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="#">{{music.music_person}}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <!-- Preview Image -->
+        {% if music.albums.album_logo %}
+        <img class="img-fluid rounded" src="{{music.albums.album_logo.url}}" alt="">
+        {% endif %}
+        <hr>
+
+        <!-- Post Content -->
+        
+        
+        <audio controls  preload="metadata" crossorigin="use-credentials">
+            <source src="{{music.the_music.url}}" type="audio/ogg">
+            <source src="{{music.the_music.url}}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <hr>
+        <h4>Yorumlar</h4>
+        <hr>
+        
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.comment_person.username}}</h5>
+             <br>
+            {{comment.comment_text}}
+          </div>
+        </div>
+        
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-info">Müziğe Henüz Yorum Yapılmamaış</div>
+        {% endif%}
+        
+        {% if request.user.is_authenticated %}
+        <div class="card my-4">
+          <h5 class="card-header">Yorum Yazın:</h5>
+          <div class="card-body">
+            <form method="POST" action="{% url 'Music:musicComment' music.id %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="formGroupExampleInput">Yorum Ekleyin {{request.user.username}}</label>
+                
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Yorum Alanı</label>
+                <textarea name="comment_text" class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger">Yorum Ekle</button>
+            </form>
+          </div>
+        </div>
+       {% endif %}
+
+      </div>
+
+      
+
+    </div>
+    <!-- /.row -->
+
+{% endblock body %}

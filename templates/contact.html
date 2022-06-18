@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+<body class="main-layout contact-page">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="{%  static 'images/loading.gif' %}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    
+    <!-- end header -->
+
+    <div class="contactbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contacttitlepage">
+                        <h2>contact</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 offset-md-3">
+                <div class="address">
+
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input class="contactus" placeholder="Name" type="text" name="Name">
+                            </div>
+                            <div class="col-sm-12">
+                                <input class="contactus" placeholder="Phone" type="text" name="Email">
+                            </div>
+                            <div class="col-sm-12">
+                                <input class="contactus" placeholder="Email" type="text" name="Email">
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea class="textarea" placeholder="Message" type="text" name="Message"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                <button class="send">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</body>
+
+{% endblock %}

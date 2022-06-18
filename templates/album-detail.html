@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div>
+<h3>{{album.album_title}}</h3>
+<hr>
+<p>
+    Albüm : <small>{{album.album_title}}</small><br>
+    Tür : <small>{{album.album_title}}</small><br>
+    {% if album.album_logo %}
+    Logo : <img src="{{ album.album_logo.url }}" width="300" height="300">
+    {% endif %}
+</p>
+<hr>
+{% if musics %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Müzik Adı</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for music in musics %}
+   <tr>
+      <th scope="row">{{music.id}}</th>
+      <td><a href="{% url 'Music:musicDetail' music.id %}">{{music.musicName}}</a></td>
+      <td>
+      <audio controls  preload="metadata" crossorigin="use-credentials">
+        <source src="{{music.the_music.url}}" type="audio/ogg">
+        <source src="{{music.the_music.url}}" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+      </td>
+    </tr>
+  {% endfor %}
+   
+    
+  </tbody>
+</table>
+{% else %}
+  <diV class="alert alert-danger">Henüz Müzik Bulunmuyor</diV>  
+{% endif %}
+</div>
+{% endblock body %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        <h3>Album Guncelle</h3>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{albumUpdatedForm.media}}
+            {{albumUpdatedForm|crispy}}
+            
+            <br>
+            <button typw="submit" class="btn btn-danger">Album Guncelle</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

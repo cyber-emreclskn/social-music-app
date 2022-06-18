@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package Music_proto;
+
+import "google/protobuf/empty.proto";
+
+
+service AlbumModelController{
+
+    rpc List(AlbumModelListRequest) returns (stream AlbumModel){}
+    rpc Create(AlbumModel) returns (AlbumModel){}
+    rpc Retrieve(AlbumModelRetrieveRequest) returns (AlbumModel){}
+    rpc Update(AlbumModel) returns (AlbumModel){}
+    rpc Destroy(AlbumModel) returns (google.protobuf.Empty){}
+}
+
+message AlbumModel{
+    
+    int32 id = 1;
+
+    string artist = 2;
+
+    string album_title = 3;
+
+    string genre = 4;
+
+    
+}
+
+message AlbumModelRetrieveRequest{
+    int32 id = 1;
+}
+
+message AlbumModelListRequest{
+
+}

@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<body class="main-layout album-page">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+
+
+    <div class="Albumsbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="Albumstitlepage">
+                        <h2>Albums</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% if albums %}
+    <!-- Albums -->
+    <div class="Albums">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+
+                        <span>It is a long established fact that a reader will be distracted by the readable <br>content of a page when looking at its layout. The point of using Lorem </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for album in albums %}
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 margin">
+                    <div class="Albums-box">
+                        <p>{{ album.album_title }}</p>
+                        <figure>
+                            {% if album.album_logo %}
+                            <a href="{% url 'Music:albumDetail' album.id %}" class="fancybox" rel="ligthbox ">
+                                <img class="zoom img-fluid" src="{{ album.album_logo.url }}"  width="25" height="25" alt="">
+                            </a>
+                            <span class="hoverle">
+                        <a href="{% url 'Music:albumDetail' album.id %}" class="fancybox" rel="ligthbox"><img src="{{ album.album_logo.url }}"></a>
+                        </span>
+                            {% endif %}
+                        </figure>
+                    </div>
+                </div>
+               {% endfor %}
+               
+                
+                
+
+            </div>
+        </div>
+    </div>
+    <!-- end Albums -->
+    {% else %}
+
+    {% endif %}
+</body>
+{% endblock %}

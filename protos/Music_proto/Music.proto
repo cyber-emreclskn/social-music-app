@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package Music_proto;
+
+import "google/protobuf/empty.proto";
+
+service MusicModelController{
+
+    rpc List(MusicModelListRequest) returns (stream MusicModel){}
+    rpc Create(MusicModel) returns (MusicModel){}
+    rpc Retrieve(MusicModelRetrieveRequest) returns (MusicModel){}
+    rpc Update(MusicModel) returns (MusicModel){}
+    rpc Destroy(MusicModel) returns (google.protobuf.Empty){}
+}
+
+
+message MusicModel{
+
+    int32 id = 1;
+
+    string musicName = 3;
+    
+}
+
+
+message MusicModelRetrieveRequest{
+    int32 id = 1;
+}
+
+message MusicModelListRequest{
+    
+}
